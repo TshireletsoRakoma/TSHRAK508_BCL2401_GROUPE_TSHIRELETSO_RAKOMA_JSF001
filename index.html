@@ -177,3 +177,20 @@ div class="flex flex-wrap gap-2">
                         if (!response.ok) {
                             throw new Error('Data fetching failed, please check your network connection');
                         }
+                        const data = await response.json();
+                        this.products = data;
+                        this.originalProducts = JSON.parse(JSON.stringify(data));
+                        this.sortProducts();
+                        this.searchProducts();
+                        this.fetchCategories(); // Fetch categories after products
+                    } catch (error) {
+                        this.error = error;
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+
+                fetchCategories() {
+                    const categories = [...new Set(this.originalProducts.map(product => product.category))];
+                    this.categories = ['All categories', ...categories];
+                },

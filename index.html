@@ -164,3 +164,7 @@ div class="flex flex-wrap gap-2">
                 isModalOpen: false,
                 selectedProduct: {},
 
+                async fetchProducts() {
+                    this.loading = true;
+                    this.error = null;
+

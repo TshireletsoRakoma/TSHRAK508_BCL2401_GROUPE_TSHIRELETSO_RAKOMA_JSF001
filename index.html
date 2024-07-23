@@ -168,3 +168,12 @@ div class="flex flex-wrap gap-2">
                     this.loading = true;
                     this.error = null;
 
+                    try {
+                        let url = 'https://fakestoreapi.com/products';
+                        if (this.filterItem !== 'All categories') {
+                            url = `https://fakestoreapi.com/products/category/${this.filterItem}`;
+                        }
+                        const response = await fetch(url);
+                        if (!response.ok) {
+                            throw new Error('Data fetching failed, please check your network connection');
+                        }

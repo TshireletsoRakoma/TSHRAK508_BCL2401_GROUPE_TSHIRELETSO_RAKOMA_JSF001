@@ -83,3 +83,12 @@
 </nav>
 
 </header>
+
+<div x-data="productStore()" x-init="fetchProducts()" class="p-6">
+    <!-- Controls for sorting, searching, and filtering -->
+    <div class="mb-4 flex space-x-4">
+        <select x-model="sorting" @change="sortProducts" class="p-2 border rounded">
+            <option value="default">Default</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+        </select>

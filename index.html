@@ -204,3 +204,13 @@ div class="flex flex-wrap gap-2">
                         this.products = JSON.parse(JSON.stringify(this.originalProducts));
                     }
                 },
+
+                searchProducts() {
+                    if (this.searchTerm.trim() !== "") {
+                        this.products = this.originalProducts.filter(product =>
+                            product.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+                        );
+                    } else {
+                        this.products = JSON.parse(JSON.stringify(this.originalProducts));
+                    }
+                },

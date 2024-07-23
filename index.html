@@ -107,3 +107,7 @@
      <template x-if="loading">
         <div>Loading...</div>
     </template
+
+    <template x-if="error">
+        <div>Error: <span x-text="error.message"></span></div>
+    </template>

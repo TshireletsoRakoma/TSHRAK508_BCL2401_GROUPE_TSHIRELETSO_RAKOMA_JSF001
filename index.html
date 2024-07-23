@@ -194,3 +194,13 @@ div class="flex flex-wrap gap-2">
                     const categories = [...new Set(this.originalProducts.map(product => product.category))];
                     this.categories = ['All categories', ...categories];
                 },
+
+                sortProducts() {
+                    if (this.sorting !== 'default') {
+                        this.products.sort((a, b) =>
+                            this.sorting === 'low' ? a.price - b.price : b.price - a.price
+                        );
+                    } else {
+                        this.products = JSON.parse(JSON.stringify(this.originalProducts));
+                    }
+                },

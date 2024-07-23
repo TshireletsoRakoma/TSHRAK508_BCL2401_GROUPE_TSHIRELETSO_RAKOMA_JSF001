@@ -7,8 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-
-.product-card {
+        .product-card {
             position: relative;
             overflow: hidden;
             background-color: #c2c3c2;
@@ -49,8 +48,7 @@
             top: 10px;
             right: 10px;
             cursor: pointer;
-        }  
-
+        }        
     </style>
 
 </head>
@@ -73,47 +71,46 @@
                 aria-controls="navbar-default"
                 aria-expanded="false"
             >
-
             <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-            </svg>
-        </button>
-    </div>
-</nav>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
 
-</header>
+    </header>
 
-<div x-data="productStore()" x-init="fetchProducts()" class="p-6">
-    <!-- Controls for sorting, searching, and filtering -->
-    <div class="mb-4 flex space-x-4">
-        <select x-model="sorting" @change="sortProducts" class="p-2 border rounded">
-            <option value="default">Default</option>
-            <option value="low">Price: Low to High</option>
-            <option value="high">Price: High to Low</option>
-        </select>
+    <div x-data="productStore()" x-init="fetchProducts()" class="p-6">
+        <!-- Controls for sorting, searching, and filtering -->
+        <div class="mb-4 flex space-x-4">
+            <select x-model="sorting" @change="sortProducts" class="p-2 border rounded">
+                <option value="default">Default</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
 
-        <input type="text" x-model="searchTerm" @input="searchProducts" placeholder="Search products..." class="p-2 border rounded">
+            <input type="text" x-model="searchTerm" @input="searchProducts" placeholder="Search products..." class="p-2 border rounded">
 
-        <select x-model="filterItem" @change="fetchProducts" class="p-2 border rounded">
-            <option value="All categories">Select categories</option>
-            <template x-for="category in categories" :key="category">
-                <option x-text="category" x-bind:value="category"></option>
-            </template>
-        </select>
-    </div>
+            <select x-model="filterItem" @change="fetchProducts" class="p-2 border rounded">
+                <option value="All categories">Select categories</option>
+                <template x-for="category in categories" :key="category">
+                    <option x-text="category" x-bind:value="category"></option>
+                </template>
+            </select>
+        </div>
 
-     <!-- Loading and Error Messages -->
-     <template x-if="loading">
-        <div>Loading...</div>
-    </template
+         <!-- Loading and Error Messages -->
+         <template x-if="loading">
+            <div>Loading...</div>
+        </template>
 
-    <template x-if="error">
-        <div>Error: <span x-text="error.message"></span></div>
-    </template>
+        <template x-if="error">
+            <div>Error: <span x-text="error.message"></span></div>
+        </template>
 
-           <!-- Product Cards Grid -->
-           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Product Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <template x-for="product in products" :key="product.id">
                 <div class="product-card p-4 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <img :src="product.image" alt="Product Image" class="w-full h-48 object-contain mb-4 rounded">
@@ -125,7 +122,7 @@
             </template>
         </div>
 
-               <!-- Modal -->
+        <!-- Modal -->
        <div x-show="isModalOpen" @click.away="closeModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white rounded-lg p-6 max-w-lg w-full relative">
             <button @click="closeModal" class="absolute top-2 right-2 text-gray-700">✕</button>
@@ -149,14 +146,15 @@ div class="flex flex-wrap gap-2">
                 </div>
             </div>
         </div>
-        <script>
+ 
+     <script>
 
-            function productStore() {
-                        return {
-                            products: [],
-                            originalProducts: [],
-                            categories: [],
-                            loading: false,
+function productStore() {
+            return {
+                products: [],
+                originalProducts: [],
+                categories: [],
+                loading: false,
                 error: null,
                 sorting: "default",
                 searchTerm: "",

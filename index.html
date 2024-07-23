@@ -124,3 +124,17 @@
                 </div>
             </template>
         </div>
+
+               <!-- Modal -->
+       <div x-show="isModalOpen" @click.away="closeModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full relative">
+            <button @click="closeModal" class="absolute top-2 right-2 text-gray-700">✕</button>
+            <img class="object-contain h-48 mx-auto" :src="selectedProduct.image" alt="Product Image">
+            <h2 class="text-2xl font-bold my-4" x-text="selectedProduct.title"></h2>
+            <p class="text-lg mb-2" x-text="selectedProduct.description"></p>
+            <p class="text-xl font-semibold mb-2">Price: $<span x-text="selectedProduct.price"></span></p>
+            <p class="text-lg mb-2">Category: <span x-text="selectedProduct.category"></span></p>
+          <div class="flex items-center">
+            <span class="text-lg">Rating: <span x-text="selectedProduct.rating.rate"></span></span>
+    <span class="ml-2 text-gray-500" x-text="((${selectedProduct.rating.count} reviews))"></span>
+</div>
